@@ -1,0 +1,38 @@
+$color-basic: #222;
+$color-placeholder: #777;
+$color-input: black;
+$color-main: #a62300;
+$color-border: #ccc;
+$color-brown: #3f2916;
+$color-yellow: #ffe756;
+
+$ease-main: .3s ease;
+
+$font-main: 'PT Sans', Arial, sans-serif;
+$font-second: 'Bienetresocial', serif;
+$font-third: 'PT Sans Narrow', $font-main;
+
+$breakpoints: (
+  'phone': 400px,
+  'phone-wide': 480px,
+  'phablet': 560px,
+  'tablet-small': 640px,
+  'tablet': 760px,
+  'tablet-wide': 1020px,
+  'desktop': 1270px,
+  'desktop-wide': 1420px
+);
+
+@mixin screen($width, $type: max) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+
+    @if $type == min {
+      $width: $width + 1px;
+    }
+
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
